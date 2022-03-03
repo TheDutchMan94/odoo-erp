@@ -24,3 +24,18 @@ services:
       - DEBUGPY_ENABLE=1
     depends_on: ["db", "wdb"]
     command: ["odoo", "--dev", "wdb,reload,qweb,werkzeug,xml"]
+  nginx-stack:
+    container_name: nginx-stack
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    volumes:
+      - ./nginx-config:/etc/nginx/conf.d
+    ports:
+      - 80:80   #non secure
+      #- 443:443 #ssl
+    depends_on:
+      - odoo
+    restart: always
+    networks:
+      - odoonet
