@@ -31,8 +31,8 @@ services:
       dockerfile: nginx.Dockerfile
     volumes:
       - ./nginx-config:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/nginx/ssl
-      - ./certbot/data:/var/www/html
+      #- ./certbot/conf:/etc/nginx/ssl
+      #- ./certbot/data:/var/www/html
     ports:
       - 80:80   #non secure
       - 443:443 #ssl
@@ -41,13 +41,13 @@ services:
     restart: always
     networks:
       - odoonet
-  certbot:
-    container_name: certbot
-    image: certbot/certbot:latest
-    command: certonly --webroot --webroot-path=/var/www/html --email sabebaw@excellerentsolutions.com --agree-tos --no-eff-email -d edc-stag.excellerentsolutions.com -d www.edc-stag.excellerentsolutions.com
-    volumes:
-        - ./certbot/conf:/etc/letsencrypt
-        - ./certbot/logs:/var/log/letsencrypt
-        - ./certbot/data:/var/www/html
-    networks:
-      - odoonet
+  # certbot:
+  #   container_name: certbot
+  #   image: certbot/certbot:latest
+  #   command: certonly --webroot --webroot-path=/var/www/html --email sabebaw@excellerentsolutions.com --agree-tos --no-eff-email -d edc-stag.excellerentsolutions.com -d www.edc-stag.excellerentsolutions.com
+  #   volumes:
+  #       - ./certbot/conf:/etc/letsencrypt
+  #       - ./certbot/logs:/var/log/letsencrypt
+  #       - ./certbot/data:/var/www/html
+  #   networks:
+  #     - odoonet
