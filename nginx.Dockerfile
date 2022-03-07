@@ -1,7 +1,7 @@
 FROM nginx:stable
 USER root
 RUN apt update
-# RUN apt install  nano certbot python3-certbot-nginx -y
+#RUN apt install  nano certbot python3-certbot-nginx -y
 # Conf files
 #COPY odoo-nginx.conf /etc/nginx/conf.d/
 
