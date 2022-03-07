@@ -44,7 +44,7 @@ services:
   certbot:
     container_name: certbot
     image: certbot/certbot:latest
-    command: certonly --webroot --webroot-path=/var/www/html -- email sabebaw@excellerentsolutions.com --agree-tos --no-eff-email -d edc-stag.excellerentsolutions.com -d www.edc-stag.excellerentsolutions.com
+    command: certonly --webroot --webroot-path=/var/www/html --email sabebaw@excellerentsolutions.com --agree-tos --no-eff-email -d edc-stag.excellerentsolutions.com -d www.edc-stag.excellerentsolutions.com
     volumes:
         - ./certbot/conf:/etc/letsencrypt
         - ./certbot/logs:/var/log/letsencrypt
