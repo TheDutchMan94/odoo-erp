@@ -25,22 +25,35 @@ services:
     depends_on: ["db", "wdb"]
     command: ["odoo", "--dev", "wdb,reload,qweb,werkzeug,xml"]
   nginx-stack:
-    container_name: nginx-stack
-    build:
-      context: .
-      dockerfile: nginx.Dockerfile
-    volumes:
-      - ./nginx-config:/etc/nginx/conf.d
-      # - ./certbot/conf:/etc/nginx/ssl
-      # - ./certbot/data:/var/www/html
-    ports:
-      - 80:80   #non secure
-      #- 443:443 #ssl
+    # container_name: nginx-stack
+    # build:
+    #   context: .
+    #   dockerfile: nginx.Dockerfile
+    # volumes:
+    #   - ./nginx-config:/etc/nginx/conf.d
+    #   # - ./certbot/conf:/etc/nginx/ssl
+    #   # - ./certbot/data:/var/www/html
+    # ports:
+    #   - 80:80   #non secure
+    #   #- 443:443 #ssl
     depends_on:
       - odoo
-    restart: always
+    # restart: always
     networks:
       - odoonet
+
+    restart: unless-stopped
+    image: staticfloat/nginx-certbot
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
+    environment:
+      CERTBOT_EMAIL: sabebaw@excellerentsolutions.com
+      volumes:
+          - ./nginx-config:/etc/nginx/user.conf.d:ro
+          - letsencrypt:/etc/letsencrypt
+volumes:
+    letsencrypt:
   # certbot:
   #   container_name: certbot
   #   image: certbot/certbot:latest
