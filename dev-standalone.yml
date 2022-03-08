@@ -31,8 +31,8 @@ services:
       dockerfile: nginx.Dockerfile
     volumes:
       - ./nginx-config:/etc/nginx/conf.d
-      # - ./certbot/conf:/etc/nginx/ssl
-      # - ./certbot/data:/var/www/html
+      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/html
     ports:
       - 80:80   #non secure
       - 443:443 #ssl
