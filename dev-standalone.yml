@@ -50,7 +50,7 @@ services:
     environment:
       CERTBOT_EMAIL: sabebaw@excellerentsolutions.com
       volumes:
-          - ./nginx-config:/etc/nginx/user.conf.d:ro
+          - ./nginx-config:/etc/nginx/conf.d:ro
           - letsencrypt:/etc/letsencrypt
 volumes:
     letsencrypt:
