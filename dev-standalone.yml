@@ -15,6 +15,7 @@ services:
     volumes:
       # Host paths (odoo modules, src code & conf)
       - ./custom:${ODOO_EXTRA_ADDONS}:delegated
+      - ./customized-core-addons/hr:${ODOO_BASEPATH}/addons/hr
     environment:
       - LOG_LEVEL=debug
       - WITHOUT_DEMO=False
